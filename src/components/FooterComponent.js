@@ -1,11 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Row, Col, Space} from 'antd';
+import {Row, Col} from 'antd';
 import {FileDoneOutlined, PhoneOutlined, InstagramOutlined, TwitterOutlined, SkypeOutlined, FacebookOutlined} from '@ant-design/icons'
 
 function Footer(){
   return(
-    <Row>
+    <Row style={{background:"#141414", color:"white", paddingTop:"20px"}}>
     <Col  span={6}>
       <h3>Links</h3>
         <ul className="list">
