@@ -1,8 +1,14 @@
 .App {
   text-align: center;
 }
-h3, h1, h2, h4, h5, li, p {
-  text-align:center;
+h3,
+h1,
+h2,
+h4,
+h5,
+li,
+p {
+  text-align: center;
 }
 .App-logo {
   height: 40vmin;
@@ -29,7 +35,7 @@ h3, h1, h2, h4, h5, li, p {
 .App-link {
   color: #61dafb;
 }
-.list{
+.list {
   list-style: none;
   padding-left: 0;
 }
