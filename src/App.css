@@ -15,6 +15,11 @@ p {
   pointer-events: none;
 }
 
+.container {
+  margin: auto;
+  width: 80%;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -39,8 +44,8 @@ p {
   list-style: none;
   padding-left: 0;
 }
-.ant-row h3{
-  color:white;
+.ant-row h3 {
+  color: white;
 }
 
 @keyframes App-logo-spin {
