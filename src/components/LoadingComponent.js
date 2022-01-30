@@ -5,7 +5,7 @@ import {Row} from 'antd'
 function Loading(){
   return(
     <Row justify='center'>
-      <LoadingOutlined style={{fontSize:'30px'}} spin/>
+      <LoadingOutlined style={{fontSize:'40px', padding:'60px'}} spin/>
     </Row>
   );
 }

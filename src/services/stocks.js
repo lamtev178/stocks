@@ -1,18 +1,18 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 
 const apiHeaders = {
-  'x-rapidapi-host': 'yh-finance.p.rapidapi.com',
-  'x-rapidapi-key': '2f5e899c15msh6d2f31db16ac4b1p17ada5jsn4e3877e42070'
+'X-API-KEY': 'Gs60evLgMs1oumgpFYfyn4jc2dVIodec1x0Bnjek',
 }
 let symbols = ['', 'IBM', 'AMD', 'AAPL', 'TSLA', 'MSFT', 'FB', 'NVDA', 'GOOGL', 'AMZN', 'JPM', 'GOOG', 'INTC', 'V', 'BA', 'KO', 'PM', 'NFLX', 'MCD', 'ADBE', 'PYPL', 'EBAY', 'F']
 const CreacteUrl =  () => {
-    let Url = '';
+    let Url = 'v6/finance/quote?region=US&lang=en&symbols=';
     for(let symbol of symbols){
-      Url = Url + symbol + '%20%2C';
+      Url = Url + symbol + '%2C';
     }
-  return Url;
+  return Url; 
 }
-const baseUrl = 'https://yh-finance.p.rapidapi.com/market/v2/get-quotes?region=US&symbols='
+
+const baseUrl = 'https://yfapi.net/'
 let Url = CreacteUrl()
 const createRequest = (url) => ({url , headers: apiHeaders})
 
@@ -24,9 +24,12 @@ export const stocksApi = createApi({
       query: () => createRequest(Url)
     }),
     getStock: builder.query({
-      query: (stock) => createRequest("C%20%2C"+stock)
+      query: (stock) => createRequest("v6/finance/quote?region=US&lang=en&symbols=%2C" + stock)
+    }),
+    getComments: builder.query({
+      query: (stock) => createRequest("ws/insights/v1/finance/insights?symbol=" + stock)
     })
   })
 })
 
-export const { useGetStocksQuery, useGetStockQuery } = stocksApi
+export const { useGetStocksQuery, useGetStockQuery, useGetCommentsQuery } = stocksApi
