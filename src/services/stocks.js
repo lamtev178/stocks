@@ -3,7 +3,7 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 const apiHeaders = {
 'X-API-KEY': 'Gs60evLgMs1oumgpFYfyn4jc2dVIodec1x0Bnjek',
 }
-let symbols = ['', 'IBM', 'AMD', 'AAPL', 'TSLA', 'MSFT', 'FB', 'NVDA', 'GOOGL', 'AMZN', 'JPM', 'GOOG', 'INTC', 'V', 'BA', 'KO', 'PM', 'NFLX', 'MCD', 'ADBE', 'PYPL', 'EBAY', 'F']
+let symbols = ['', 'IBM', 'AMD', 'AAPL', 'TSLA', 'MSFT', 'FB', 'NVDA', 'GOOGL', 'AMZN', 'JPM', 'GOOG', 'INTC', 'V', 'BA', 'KO', 'PM', 'NFLX', 'MCD', 'ADBE', 'PYPL', 'EBAY', 'F', 'BAC', 'PM', 'XOM']
 const CreacteUrl =  () => {
     let Url = 'v6/finance/quote?region=US&lang=en&symbols=';
     for(let symbol of symbols){
@@ -28,8 +28,11 @@ export const stocksApi = createApi({
     }),
     getComments: builder.query({
       query: (stock) => createRequest("ws/insights/v1/finance/insights?symbol=" + stock)
+    }),
+    getChart: builder.query({
+      query: (stock) => createRequest("v8/finance/spark?interval=1d&range=3mo&symbols=" + stock)
     })
   })
 })
 
-export const { useGetStocksQuery, useGetStockQuery, useGetCommentsQuery } = stocksApi
+export const { useGetStocksQuery, useGetStockQuery, useGetCommentsQuery, useGetChartQuery } = stocksApi

@@ -34,9 +34,9 @@ function Stocks(){
       return(
           <Col span={{md:6,sm:12,xs:24}} style={{margin:"0 10px 10px 10px"}} key={stock.averageDailyVolume10Day}>
             <Link to={`/stocks/${stock.symbol.toUpperCase()}`}>
-              <Card hoverable title={stock.shortName}  bordered>
+              <Card hoverable title={stock.shortName}  bordered style={{minWidth:"280px"}}>
                 <p>Name: {stock.symbol}</p>
-                <p>Price: {stock.regularMarketPrice}$</p>
+                <p>Price: {stock.regularMarketPrice.toFixed(2)}$</p>
                 <p>{range === 'regular' ? 'Day Range : ' + stock.regularMarketDayRange : 'Fifty Two Week Range : ' + stock.fiftyTwoWeekRange}</p>
                 <p style={{color:`${colorStock}`}}>Price Change Percent: {stock[rangeStock + "ChangePercent"].toFixed(2)}%</p>
                 <p style={{color:`${colorStock}`}}>Price Change : {stock[rangeStock + "Change"].toFixed(2)}$</p>
@@ -49,6 +49,7 @@ function Stocks(){
   return(
     <Layout>
       <Sider style={{background:"#bfbfbf"}}>
+        <div style={{position: "sticky", top: "0"}}>
         <Title level={4}>Select Range</Title>
         <Select value={range} onChange={setRange} style={{margin:"10px", width:"150px"}}>
           <Option value="regular">Regular</Option>
@@ -57,6 +58,7 @@ function Stocks(){
         </Select>
         <Title level={4} >Search symbol</Title>
         <Search style={{margin:"10px", width:"150px"}} onSearch={handleSearch} type="text" enterButton placeholder="input search"/>
+        </div>
       </Sider>
       <Content style={{padding:"40px"}}>
         <Breadcrumb>
