@@ -1,26 +1,33 @@
 import React from 'react';
-import { Input, Button, Select, Row, Col } from 'antd';
+import { Form, Typography, Input, Select, Row, Button } from 'antd';
 
-const  {TextArea} = Input
-const {Option} = Select
+
+const  {Title} = Typography;
+const { TextArea } = Input;
+const {Option} = Select;
 
 function Contact(){
   return(
-    <Row justify="center">
-    <h1>Contact Us</h1>
-    <Col span={12}>
-      <Input placeholder="Your Name" />
-    </Col>
-    <Col span={12}>
-      <Select default="Tel.">
-      <Option value="Email">Tel.</Option>
-      </Select>
-    </Col>
-    <Col span={12}>
-      <TextArea rows={4} style={{width:"300px"}}/>
-    </Col>
-    <Button type="primary">Submit</Button>
-    </Row>
+    <div className='container'>
+      <Title>Contact Us</Title>
+      <Form style={{width:'400px'}}>
+        <Form.Item label='You name or Company name'>
+          <Input placeholder="Your Name" />
+        </Form.Item>
+        <Form.Item label='Select'>
+          <Select>
+            <Select.Option value="Email">Email</Select.Option>
+              <Select.Option value="Tel">Tel.</Select.Option>
+          </Select>
+        </Form.Item>
+        <Form.Item label='Your comment'>
+          <TextArea/>
+        </Form.Item>
+        <Form.Item >
+          <Button type="primary">Submit</Button>
+        </Form.Item>
+      </Form>
+    </div>
   );
 }
 

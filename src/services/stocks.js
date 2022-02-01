@@ -9,7 +9,7 @@ const CreacteUrl =  () => {
     for(let symbol of symbols){
       Url = Url + symbol + '%2C';
     }
-  return Url; 
+  return Url;
 }
 
 const baseUrl = 'https://yfapi.net/'
