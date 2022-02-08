@@ -3,7 +3,7 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 const apiHeaders = {
 'X-API-KEY': 'Gs60evLgMs1oumgpFYfyn4jc2dVIodec1x0Bnjek',
 }
-let symbols = ['', 'IBM', 'AMD', 'AAPL', 'TSLA', 'MSFT', 'FB', 'NVDA', 'GOOGL', 'AMZN', 'JPM', 'GOOG', 'INTC', 'V', 'BA', 'KO', 'PM', 'NFLX', 'MCD', 'ADBE', 'PYPL', 'EBAY', 'F', 'BAC', 'PM', 'XOM']
+let symbols = ['', 'IBM', 'AMD', 'AAPL', 'TSLA', 'MSFT', 'FB', 'NVDA', 'GOOGL', 'AMZN', 'JPM', 'GOOG', 'INTC', 'V', 'BA', 'KO', 'PM', 'NFLX', 'MCD', 'ADBE', 'PYPL', 'EBAY', 'F', 'BAC', 'XOM']
 const CreacteUrl =  () => {
     let Url = 'v6/finance/quote?region=US&lang=en&symbols=';
     for(let symbol of symbols){

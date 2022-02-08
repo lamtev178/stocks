@@ -8,7 +8,7 @@ import Bonds from './BondsComponent';
 import Footer from './FooterComponent';
 import Header from './HeaderComponent';
 import SingleStock from './SingleStockComponent';
-import News from './NewsComponent'
+import News from './NewsComponent';
 
 function Main(){
   return(

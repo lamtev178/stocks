@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography} from 'antd';
-import {DollarCircleOutlined} from '@ant-design/icons'
+import {DollarCircleOutlined} from '@ant-design/icons';
 
 const { Title, Paragraph } = Typography;
 

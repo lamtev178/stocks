@@ -2,7 +2,7 @@ import React from 'react';
 import {useGetStockQuery, useGetCommentsQuery, useGetChartQuery} from '../services/stocks';
 import Loading from './LoadingComponent';
 import {useParams, Link} from 'react-router-dom';
-import { Typography, Divider, Row, Col, Breadcrumb } from 'antd';
+import { Typography, Divider, Row, Col, Breadcrumb, Collapse  } from 'antd';
 import { Line } from 'react-chartjs-2';
 import Error from './ErrorComponent';
 import {
@@ -22,6 +22,7 @@ ChartJS.register(
 
 
 const { Title, Paragraph} = Typography;
+const { Panel } = Collapse;
 
 function SingleStock(){
   const { symbol } = useParams()

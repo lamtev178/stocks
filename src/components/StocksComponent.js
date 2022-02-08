@@ -16,7 +16,6 @@ function Stocks(){
   const [range, setRange] = useState('regular');
   const [searchStocks, setSearch] = useState("");
   const redirect = useNavigate()
-
   const handleSearch = value => {
     setSearch(value.toUpperCase());
     redirect(`/stocks/${value.toUpperCase()}`)
@@ -25,16 +24,26 @@ function Stocks(){
     let colorStock = "green";
     let rangeStock = 'regular';
 
+    let stockName;
+    if(stock.displayName === undefined){
+      stockName = `https://api.twelvedata.com/logo/${stock.symbol}.com`
+    } else 
+    if ((stock.displayName?.includes(' ')) || (stock.displayName?.includes('.'))){
+      stockName = `https://api.twelvedata.com/logo/${stock.symbol}.com`
+    } else {
+      stockName = `https://api.twelvedata.com/logo/${stock.displayName}.com`
+    }
+
     if(range === 'regular'){
       rangeStock = "regularMarket";
     } else {if(range === 'twoHundredDay' || 'fiftyDay')
       rangeStock = range + "Average";}
     if(stock[rangeStock+"ChangePercent"] < 0) colorStock = 'red';
-
       return(
           <Col span={{md:6,sm:12,xs:24}} style={{margin:"0 10px 10px 10px"}} key={stock.averageDailyVolume10Day}>
             <Link to={`/stocks/${stock.symbol.toUpperCase()}`}>
-              <Card hoverable title={stock.shortName}  bordered style={{minWidth:"280px"}}>
+              <Card hoverable cover={<img src={stockName} style={{height:'120px', width:'120px', objectFit: 'contain'}} alt={stock.shortName}/>} title={stock.shortName}  bordered style={{minWidth:"280px"}}>
+                
                 <p>Name: {stock.symbol}</p>
                 <p>Price: {stock.regularMarketPrice.toFixed(2)}$</p>
                 <p>{range === 'regular' ? 'Day Range : ' + stock.regularMarketDayRange : 'Fifty Two Week Range : ' + stock.fiftyTwoWeekRange}</p>

@@ -11,7 +11,7 @@ function Contact(){
     <div className='container'>
       <Title>Contact Us</Title>
       <Form style={{width:'400px'}}>
-        <Form.Item label='You name or Company name'>
+        <Form.Item label='Your name or Company name'>
           <Input placeholder="Your Name" />
         </Form.Item>
         <Form.Item label='Select'>
