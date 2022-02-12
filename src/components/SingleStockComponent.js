@@ -1,8 +1,9 @@
 import React from 'react';
 import {useGetStockQuery, useGetCommentsQuery, useGetChartQuery} from '../services/stocks';
+import {useGetSymbolNewsQuery} from '../services/news';
 import Loading from './LoadingComponent';
 import {useParams, Link} from 'react-router-dom';
-import { Typography, Divider, Row, Col, Breadcrumb, Collapse  } from 'antd';
+import { Typography, Divider, Row, Col, Breadcrumb, Card } from 'antd';
 import { Line } from 'react-chartjs-2';
 import Error from './ErrorComponent';
 import {
@@ -22,21 +23,19 @@ ChartJS.register(
 
 
 const { Title, Paragraph} = Typography;
-const { Panel } = Collapse;
+const { Meta } = Card;
 
 function SingleStock(){
   const { symbol } = useParams()
   const { data : stock, isLoading, isSuccess, isError, error } = useGetStockQuery(symbol)
-  const { data : comments, isLoading: commentsisLoading} = useGetCommentsQuery(symbol)
-  const { data : chartStock, isLoading: chartisLoading} = useGetChartQuery(symbol)
+  const { data : comments, isSuccess : commentsSuccess,} = useGetCommentsQuery(symbol)
+  const { data : chartStock, isSuccess : chartSuccess,} = useGetChartQuery(symbol)
+  const { data : StockNews, isLoading :  newsIsLoading,  isSuccess : newsSuccess, isError : newsIsError, error : newsError} = useGetSymbolNewsQuery(symbol)
 
-  if(chartisLoading){
-    <Loading />
-  }
   const chartDates = chartStock?.[symbol].timestamp.map((date) => {
     return(new Date(date * 1000).toLocaleDateString())
   })
-
+  console.log(stock);
   const dataChart = {
     labels: chartDates,
     datasets: [{
@@ -59,7 +58,7 @@ const options = {
       <section key={comment.id}>
         <Title  level={4} style={{textAlign:'left'}}>{comment.title}</Title>
         <Paragraph><blockquote>{comment.summary}</blockquote></Paragraph>
-        <Divider />
+        <Divider orientation='right'>{comment.publishedOn.slice(0,10)}</Divider>
       </section>
     );
   })
@@ -70,11 +69,9 @@ const options = {
   if (isSuccess ) {
     content =(
       <section>
-        <h2>Price : {stock.quoteResponse.result[0]?.regularMarketPrice}$</h2>
-        <h2>Analyst Rating : {stock.quoteResponse.result[0]?.averageAnalystRating}</h2>
         <Typography >
           <Title level={3}>Comments : </Title>
-          {commentsisLoading ? <Loading /> : stocksComments}
+          {stocksComments}
         </Typography>
       </section>
     );
@@ -90,9 +87,27 @@ const options = {
         </Col>
       </Row>)
   }
+  const newsContent = StockNews?.articles?.map((news) => {
+    return(
+          <Col span={{md:6,sm:12,xs:24}} style={{margin:"0 10px 10px 10px"}} key={news.publishedAt}>
+            <a href={news.url} target="_blank">
+              <Card 
+                hoverable 
+                cover={<img src={news.urlToImage} style={{borderRadius:'30px'}}/>}  
+                bordered 
+                style={{width:"280px", background:'#f0f2f5', borderRadius:'30px'}}
+              >
+                <Meta title={news.title} description={news.description} />
+              </Card>
+            </a>
+          </Col>
+    );
+  })
+
+
 
   return(
-    <div style={{padding:"40px"}}>
+    <div className='container'>
       <Breadcrumb>
         <Breadcrumb.Item>
           <Link to="/">Home</Link>
@@ -103,8 +118,38 @@ const options = {
         <Breadcrumb.Item>{symbol}</Breadcrumb.Item>
       </Breadcrumb>
       <Title>{symbol}</Title>
-      <Line data={dataChart} options={options}/>
-      {content}
+      <Row>
+        <Col span={6}>
+          <div className='stock-info'>
+            <span>Price</span><span>{stock?.quoteResponse?.result[0]?.regularMarketPrice}$</span>
+          </div>
+          <Divider />
+          <div className='stock-info'>
+            <span>Analyst Rating</span><span>{stock?.quoteResponse?.result[0]?.averageAnalystRating}</span>
+          </div>
+          <Divider />
+          <div className='stock-info'>
+            <span>Fifty Day Average</span><span>{stock?.quoteResponse?.result[0]?.fiftyDayAverage}$</span>
+          </div>
+          <Divider />
+          <div className='stock-info'>
+            <span>Fifty Day Average Change</span><span>{stock?.quoteResponse?.result[0]?.fiftyDayAverageChange}$</span>
+          </div>
+          <Divider />
+          <div className='stock-info'>
+            <span>Fifty Day Average Change Percent</span><span>{stock?.quoteResponse?.result[0]?.fiftyDayAverageChangePercent}$</span>
+          </div>
+          <Divider />
+        </Col>
+        <Col span={18}>
+          <Line data={dataChart} options={options}/>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={12}>{content}</Col>
+        <Col span={12}>{newsIsError ? <Error /> : <Row justify="space-around">{newsContent}</Row>}</Col>
+      </Row>
+      
     </div>
   );
 }

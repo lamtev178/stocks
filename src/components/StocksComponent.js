@@ -42,8 +42,13 @@ function Stocks(){
       return(
           <Col span={{md:6,sm:12,xs:24}} style={{margin:"0 10px 10px 10px"}} key={stock.averageDailyVolume10Day}>
             <Link to={`/stocks/${stock.symbol.toUpperCase()}`}>
-              <Card hoverable cover={<img src={stockName} style={{height:'120px', width:'120px', objectFit: 'contain'}} alt={stock.shortName}/>} title={stock.shortName}  bordered style={{minWidth:"280px"}}>
-                
+              <Card 
+                hoverable 
+                title={stock.shortName}  
+                bordered 
+                style={{minWidth:"280px", borderRadius:'30px'}}
+              >
+                <img src={stockName} className="stocksCard" alt={stock.shortName}/>
                 <p>Name: {stock.symbol}</p>
                 <p>Price: {stock.regularMarketPrice.toFixed(2)}$</p>
                 <p>{range === 'regular' ? 'Day Range : ' + stock.regularMarketDayRange : 'Fifty Two Week Range : ' + stock.fiftyTwoWeekRange}</p>

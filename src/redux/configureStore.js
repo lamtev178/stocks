@@ -1,10 +1,14 @@
 import {configureStore} from '@reduxjs/toolkit';
-import {stocksApi} from '../services/stocks'
+import {stocksApi} from '../services/stocks';
+import {newsApi} from '../services/news';
 
 export default configureStore({
   reducer: {
-    [stocksApi.reducerPath] : stocksApi.reducer
+    [stocksApi.reducerPath] : stocksApi.reducer,
+    [newsApi.reducerPath] : newsApi.reducer,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(stocksApi.middleware)
+    getDefaultMiddleware().concat(stocksApi.middleware),
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware().concat(newsApi.middleware)
 })
