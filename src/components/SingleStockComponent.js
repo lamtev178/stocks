@@ -35,7 +35,6 @@ function SingleStock(){
   const chartDates = chartStock?.[symbol].timestamp.map((date) => {
     return(new Date(date * 1000).toLocaleDateString())
   })
-  console.log(stock);
   const dataChart = {
     labels: chartDates,
     datasets: [{
@@ -89,7 +88,7 @@ const options = {
   }
   const newsContent = StockNews?.articles?.map((news) => {
     return(
-          <Col span={{md:6,sm:12,xs:24}} style={{margin:"0 10px 10px 10px"}} key={news.publishedAt}>
+          <Col span={{md:6,sm:12,xs:24}} style={{margin:"0 10px 10px 10px"}} key={news.url}>
             <a href={news.url} target="_blank">
               <Card 
                 hoverable 
@@ -103,8 +102,7 @@ const options = {
           </Col>
     );
   })
-
-
+  console.log(StockNews);
 
   return(
     <div className='container'>
@@ -121,7 +119,7 @@ const options = {
       <Row>
         <Col span={6}>
           <div className='stock-info'>
-            <span>Price</span><span>{stock?.quoteResponse?.result[0]?.regularMarketPrice}$</span>
+            <span>Price</span><span>{stock?.quoteResponse?.result[0]?.regularMarketPrice.toFixed(2)}$</span>
           </div>
           <Divider />
           <div className='stock-info'>
@@ -129,15 +127,15 @@ const options = {
           </div>
           <Divider />
           <div className='stock-info'>
-            <span>Fifty Day Average</span><span>{stock?.quoteResponse?.result[0]?.fiftyDayAverage}$</span>
+            <span>Fifty Day Average</span><span>{stock?.quoteResponse?.result[0]?.fiftyDayAverage.toFixed(2)}$</span>
           </div>
           <Divider />
           <div className='stock-info'>
-            <span>Fifty Day Average Change</span><span>{stock?.quoteResponse?.result[0]?.fiftyDayAverageChange}$</span>
+            <span>Fifty Day Average Change</span><span>{stock?.quoteResponse?.result[0]?.fiftyDayAverageChange.toFixed(2)}$</span>
           </div>
           <Divider />
           <div className='stock-info'>
-            <span>Fifty Day Average Change Percent</span><span>{stock?.quoteResponse?.result[0]?.fiftyDayAverageChangePercent}$</span>
+            <span>Fifty Day Average Change Percent</span><span>{stock?.quoteResponse?.result[0]?.fiftyDayAverageChangePercent.toFixed(2)}$</span>
           </div>
           <Divider />
         </Col>
@@ -147,7 +145,7 @@ const options = {
       </Row>
       <Row>
         <Col span={12}>{content}</Col>
-        <Col span={12}>{newsIsError ? <Error /> : <Row justify="space-around">{newsContent}</Row>}</Col>
+        <Col span={12}>{newsIsError ? <><Error /><h2>{newsError}</h2></> : <Row justify="space-around">{newsContent}</Row>}</Col>
       </Row>
       
     </div>

@@ -11,7 +11,6 @@ function Footer(){
         <ul className="list">
           <li><Link to="/">Home</Link></li>
           <li><Link to="stocks">Stocks</Link></li>
-          <li><Link to="bonds">Bonds</Link></li>
           <li><Link to="contactus">Contact Us</Link></li>
         </ul>
       </Col>
@@ -25,8 +24,8 @@ function Footer(){
     <Col span={6}>
     <a href="https://www.instagram.com/"><InstagramOutlined style={{fontSize:"25px"}}/></a>
     <a href="https://www.twitter.com/"><TwitterOutlined style={{fontSize:"25px"}}/></a>
-    <a href="https://www.twitter.com/"><SkypeOutlined style={{fontSize:"25px"}}/></a>
-    <a href="https://www.twitter.com/"><FacebookOutlined style={{fontSize:"25px"}}/></a>
+    <a href="https://www.skype.com/"><SkypeOutlined style={{fontSize:"25px"}}/></a>
+    <a href="https://www.facebook.com/"><FacebookOutlined style={{fontSize:"25px"}}/></a>
     </Col>
     </Row>
   );

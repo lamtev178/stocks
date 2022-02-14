@@ -21,6 +21,11 @@ p {
   margin-top: 40px;
 }
 
+.welcome {
+  padding: 100px;
+  background: url("../public/welcome.jpg");
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

@@ -7,9 +7,11 @@ const { Title, Paragraph } = Typography;
 function Home(){
   return(
     <div className='container'>
-      <Title>Welcome</Title>
+      <div className='welcome'>
+        <Title >Welcome to the Stocks Tracker</Title>
+      </div>
       <Paragraph style={{fontSize:"20px"}}>
-        On our website you can track the stock prices of leading American companies. You can also track the current price of bonds and follow the news in the world of finance
+        On our website you can track the stock prices, follow the news and read the comments of experts. <br />Hope it will useful for you 
       </Paragraph>
       <DollarCircleOutlined spin style={{fontSize:"40px", marginBottom:"40px"}}/><DollarCircleOutlined spin style={{fontSize:"40px", marginBottom:"40px"}}/><DollarCircleOutlined spin style={{fontSize:"40px", marginBottom:"40px"}}/><DollarCircleOutlined spin style={{fontSize:"40px", marginBottom:"40px"}}/><DollarCircleOutlined spin style={{fontSize:"40px", marginBottom:"40px"}}/><DollarCircleOutlined spin style={{fontSize:"40px", marginBottom:"40px"}}/><DollarCircleOutlined spin style={{fontSize:"40px", marginBottom:"40px"}}/><DollarCircleOutlined spin style={{fontSize:"40px", marginBottom:"40px"}}/><DollarCircleOutlined spin style={{fontSize:"40px", marginBottom:"40px"}}/><DollarCircleOutlined spin style={{fontSize:"40px", marginBottom:"40px"}}/><DollarCircleOutlined spin style={{fontSize:"40px", marginBottom:"40px"}}/>
     </div>

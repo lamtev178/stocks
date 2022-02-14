@@ -24,15 +24,28 @@ function Stocks(){
     let colorStock = "green";
     let rangeStock = 'regular';
 
-    let stockName;
-    if(stock.displayName === undefined){
-      stockName = `https://api.twelvedata.com/logo/${stock.symbol}.com`
-    } else 
-    if ((stock.displayName?.includes(' ')) || (stock.displayName?.includes('.'))){
-      stockName = `https://api.twelvedata.com/logo/${stock.symbol}.com`
-    } else {
-      stockName = `https://api.twelvedata.com/logo/${stock.displayName}.com`
+    let stockName = null;
+    if(stock.symbol == "FB"){
+      stockName = `https://api.twelvedata.com/logo/Meta.com`
+    }  
+    if(stock.symbol == "PM"){
+      stockName = `https://api.twelvedata.com/logo/pmi.com`
+    }  
+    if(stock.symbol == "MCD"){
+      stockName = `https://api.twelvedata.com/logo/McDonalds.com`
     }
+    if(stock.symbol == "F"){
+      stockName = `https://api.twelvedata.com/logo/Ford.com`
+    } 
+    if(stockName === null)
+      if(stock.displayName === undefined){
+          stockName = `https://api.twelvedata.com/logo/${stock.symbol}.com`
+        } else 
+        if ((stock.displayName?.includes(' ')) || (stock.displayName?.includes('.'))){
+          stockName = `https://api.twelvedata.com/logo/${stock.symbol}.com`
+        } else {
+          stockName = `https://api.twelvedata.com/logo/${stock.displayName}.com`
+        }
 
     if(range === 'regular'){
       rangeStock = "regularMarket";
@@ -63,7 +76,7 @@ function Stocks(){
   return(
     <Layout>
       <Sider style={{background:"#bfbfbf"}}>
-        <div style={{position: "sticky", top: "0"}}>
+        <div style={{position: "sticky", top: "0", paddingTop:'20px'}}>
         <Title level={4}>Select Range</Title>
         <Select value={range} onChange={setRange} style={{margin:"10px", width:"150px"}}>
           <Option value="regular">Regular</Option>
