@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/lamtev178/stocks/static/css/main.07347921.css",
-    "main.js": "/lamtev178/stocks/static/js/main.d988e07d.js",
-    "static/js/787.5c6cb5f0.chunk.js": "/lamtev178/stocks/static/js/787.5c6cb5f0.chunk.js",
-    "static/media/welcome.jpg": "/lamtev178/stocks/static/media/welcome.b77cf845318c0fb216d7.jpg",
-    "index.html": "/lamtev178/stocks/index.html",
-    "main.07347921.css.map": "/lamtev178/stocks/static/css/main.07347921.css.map",
-    "main.d988e07d.js.map": "/lamtev178/stocks/static/js/main.d988e07d.js.map",
-    "787.5c6cb5f0.chunk.js.map": "/lamtev178/stocks/static/js/787.5c6cb5f0.chunk.js.map"
+    "main.css": "/lamtev178/stocks/react-gh-pages/static/css/main.295f19ce.css",
+    "main.js": "/lamtev178/stocks/react-gh-pages/static/js/main.d1f2e28d.js",
+    "static/js/787.5c6cb5f0.chunk.js": "/lamtev178/stocks/react-gh-pages/static/js/787.5c6cb5f0.chunk.js",
+    "static/media/welcome.jpg": "/lamtev178/stocks/react-gh-pages/static/media/welcome.b77cf845318c0fb216d7.jpg",
+    "index.html": "/lamtev178/stocks/react-gh-pages/index.html",
+    "main.295f19ce.css.map": "/lamtev178/stocks/react-gh-pages/static/css/main.295f19ce.css.map",
+    "main.d1f2e28d.js.map": "/lamtev178/stocks/react-gh-pages/static/js/main.d1f2e28d.js.map",
+    "787.5c6cb5f0.chunk.js.map": "/lamtev178/stocks/react-gh-pages/static/js/787.5c6cb5f0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.07347921.css",
-    "static/js/main.d988e07d.js"
+    "static/css/main.295f19ce.css",
+    "static/js/main.d1f2e28d.js"
   ]
 }
