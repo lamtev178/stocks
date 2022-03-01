@@ -20,7 +20,7 @@ function Stocks(){
     redirect(`/stocks/${value.toUpperCase()}`)
   }
   const stock = data?.quoteResponse.result.map((stock) => {
-      return <Stock stock = {stock} range={range} key={stock.averageDailyVolume10Day}/>
+      return (<Stock stock = {stock} range={range} key={stock.averageDailyVolume10Day}/>);
   })
 
   return(

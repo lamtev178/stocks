@@ -31,12 +31,11 @@ function Stock({stock, range}){
 
     if(range === 'regular'){
       rangeStock = "regularMarket";
-    } else {if(range === 'twoHundredDay' || 'fiftyDay')
+    } else {if(range === 'twoHundredDay' ||  range === 'fiftyDay')
       rangeStock = range + "Average";}
     if(stock[rangeStock+"ChangePercent"] < 0) colorStock = 'red';
-    console.log(colorStock);
     return(
-        <Col span={{md:6,sm:12,xs:24}} style={{margin:"0 10px 10px 10px"}} s>
+        <Col span={{md:6,sm:12,xs:24}} style={{margin:"0 10px 10px 10px"}} >
           <Link to={`/stocks/${stock.symbol.toUpperCase()}`}>
               <Card 
               hoverable 
