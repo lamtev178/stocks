@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import {useGetStocksQuery} from '../services/stocks';
-import {Input, Card, Row, Col, Select, Layout, Typography, Breadcrumb } from 'antd';
+import {Input, Row, Col, Select, Layout, Typography, Breadcrumb } from 'antd';
 import Loading from './LoadingComponent';
 import { Link, useNavigate } from 'react-router-dom';
 import Error from './ErrorComponent';
+import Stock from './StockComponent'
 const { Title } = Typography;
 
 const { Option } = Select;
@@ -14,63 +15,12 @@ const { Search } = Input;
 function Stocks(){
   const {data, isLoading, isError, error} = useGetStocksQuery();
   const [range, setRange] = useState('regular');
-  const [searchStocks, setSearch] = useState("");
   const redirect = useNavigate()
   const handleSearch = value => {
-    setSearch(value.toUpperCase());
     redirect(`/stocks/${value.toUpperCase()}`)
   }
   const stock = data?.quoteResponse.result.map((stock) => {
-    let colorStock = "green";
-    let rangeStock = 'regular';
-
-    let stockName = null;
-    if(stock.symbol == "FB"){
-      stockName = `https://api.twelvedata.com/logo/Meta.com`
-    }  
-    if(stock.symbol == "PM"){
-      stockName = `https://api.twelvedata.com/logo/pmi.com`
-    }  
-    if(stock.symbol == "MCD"){
-      stockName = `https://api.twelvedata.com/logo/McDonalds.com`
-    }
-    if(stock.symbol == "F"){
-      stockName = `https://api.twelvedata.com/logo/Ford.com`
-    } 
-    if(stockName === null)
-      if(stock.displayName === undefined){
-          stockName = `https://api.twelvedata.com/logo/${stock.symbol}.com`
-        } else 
-        if ((stock.displayName?.includes(' ')) || (stock.displayName?.includes('.'))){
-          stockName = `https://api.twelvedata.com/logo/${stock.symbol}.com`
-        } else {
-          stockName = `https://api.twelvedata.com/logo/${stock.displayName}.com`
-        }
-
-    if(range === 'regular'){
-      rangeStock = "regularMarket";
-    } else {if(range === 'twoHundredDay' || 'fiftyDay')
-      rangeStock = range + "Average";}
-    if(stock[rangeStock+"ChangePercent"] < 0) colorStock = 'red';
-      return(
-          <Col span={{md:6,sm:12,xs:24}} style={{margin:"0 10px 10px 10px"}} key={stock.averageDailyVolume10Day}>
-            <Link to={`/stocks/${stock.symbol.toUpperCase()}`}>
-              <Card 
-                hoverable 
-                title={stock.shortName}  
-                bordered 
-                style={{minWidth:"280px", borderRadius:'30px'}}
-              >
-                <img src={stockName} className="stocksCard" alt={stock.shortName}/>
-                <p>Name: {stock.symbol}</p>
-                <p>Price: {stock.regularMarketPrice.toFixed(2)}$</p>
-                <p>{range === 'regular' ? 'Day Range : ' + stock.regularMarketDayRange : 'Fifty Two Week Range : ' + stock.fiftyTwoWeekRange}</p>
-                <p style={{color:`${colorStock}`}}>Price Change Percent: {stock[rangeStock + "ChangePercent"].toFixed(2)}%</p>
-                <p style={{color:`${colorStock}`}}>Price Change : {stock[rangeStock + "Change"].toFixed(2)}$</p>
-              </Card>
-            </Link>
-            </Col>
-      );
+      return <Stock stock = {stock} range={range} key={stock.averageDailyVolume10Day}/>
   })
 
   return(

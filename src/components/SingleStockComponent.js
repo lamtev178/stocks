@@ -1,25 +1,12 @@
 import React from 'react';
-import {useGetStockQuery, useGetCommentsQuery, useGetChartQuery} from '../services/stocks';
+import {useGetStockQuery, useGetCommentsQuery} from '../services/stocks';
 import {useGetSymbolNewsQuery} from '../services/news';
 import Loading from './LoadingComponent';
+import StockInfo from './StockInfoComponent';
 import {useParams, Link} from 'react-router-dom';
 import { Typography, Divider, Row, Col, Breadcrumb, Card } from 'antd';
-import { Line } from 'react-chartjs-2';
-import Error from './ErrorComponent';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement
-} from 'chart.js';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement
-);
+import Error from './ErrorComponent';
 
 
 const { Title, Paragraph} = Typography;
@@ -29,27 +16,7 @@ function SingleStock(){
   const { symbol } = useParams()
   const { data : stock, isLoading, isSuccess, isError, error } = useGetStockQuery(symbol)
   const { data : comments, isSuccess : commentsSuccess,} = useGetCommentsQuery(symbol)
-  const { data : chartStock, isSuccess : chartSuccess,} = useGetChartQuery(symbol)
   const { data : StockNews, isLoading :  newsIsLoading,  isSuccess : newsSuccess, isError : newsIsError, error : newsError} = useGetSymbolNewsQuery(symbol)
-
-  const chartDates = chartStock?.[symbol].timestamp.map((date) => {
-    return(new Date(date * 1000).toLocaleDateString())
-  })
-  const dataChart = {
-    labels: chartDates,
-    datasets: [{
-      label: `Price in $`,
-      data: chartStock?.[symbol].close,
-      borderColor: '#000',
-      backgroundColor: '#000'
-    }]
-  }
-const options = {
-  responsive: true,
-  layout: {
-    padding: 40
-    }
-}
 
 
   const stocksComments = comments?.finance.result.reports.map(comment => {
@@ -102,7 +69,6 @@ const options = {
           </Col>
     );
   })
-  console.log(StockNews);
 
   return(
     <div className='container'>
@@ -116,33 +82,7 @@ const options = {
         <Breadcrumb.Item>{symbol}</Breadcrumb.Item>
       </Breadcrumb>
       <Title>{symbol}</Title>
-      <Row>
-        <Col span={6}>
-          <div className='stock-info'>
-            <span>Price</span><span>{stock?.quoteResponse?.result[0]?.regularMarketPrice.toFixed(2)}$</span>
-          </div>
-          <Divider />
-          <div className='stock-info'>
-            <span>Analyst Rating</span><span>{stock?.quoteResponse?.result[0]?.averageAnalystRating}</span>
-          </div>
-          <Divider />
-          <div className='stock-info'>
-            <span>Fifty Day Average</span><span>{stock?.quoteResponse?.result[0]?.fiftyDayAverage.toFixed(2)}$</span>
-          </div>
-          <Divider />
-          <div className='stock-info'>
-            <span>Fifty Day Average Change</span><span>{stock?.quoteResponse?.result[0]?.fiftyDayAverageChange.toFixed(2)}$</span>
-          </div>
-          <Divider />
-          <div className='stock-info'>
-            <span>Fifty Day Average Change Percent</span><span>{stock?.quoteResponse?.result[0]?.fiftyDayAverageChangePercent.toFixed(2)}$</span>
-          </div>
-          <Divider />
-        </Col>
-        <Col span={18}>
-          <Line data={dataChart} options={options}/>
-        </Col>
-      </Row>
+      <StockInfo symbol={symbol} stock={stock}/>
       <Row>
         <Col span={12}>{content}</Col>
         <Col span={12}>{newsIsError ? <><Error /><h2>{newsError}</h2></> : <Row justify="space-around">{newsContent}</Row>}</Col>

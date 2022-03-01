@@ -14,7 +14,6 @@ if(date.getDate()<19 && date.getDate()>9) {
 } else {
  date = date.getFullYear()+'-'+ dateMonth +'-'+ dateDay
 }
-console.log(date);
 const baseUrl = 'https://newsapi.org/v2/'
 
 export const newsApi = createApi({
