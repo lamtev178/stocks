@@ -1,7 +1,7 @@
 {
   "name": "first",
   "version": "0.1.0",
-  "homepage": "https://github.com/lamtev178/stocks",
+  "homepage": "https://lamtev178.github.io/stocks/",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
