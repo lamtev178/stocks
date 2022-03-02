@@ -4,7 +4,6 @@ import {Routes, Route} from "react-router";
 import Home from './HomeComponent';
 import ContactUs from './ContactComponent';
 import Stocks from './StocksComponent';
-import Bonds from './BondsComponent';
 import Footer from './FooterComponent';
 import Header from './HeaderComponent';
 import SingleStock from './SingleStockComponent';
@@ -19,7 +18,6 @@ function Main(){
           <Route path="/" element={<Home />}/>
           <Route path="stocks" element={<Stocks />}/>
           <Route path="stocks/:symbol" element={<SingleStock />} />
-          <Route path="bonds" element={<Bonds />}/>
           <Route path="contactus" element={<ContactUs />}/>
           <Route path="news" element={<News />}/>
         </Routes>

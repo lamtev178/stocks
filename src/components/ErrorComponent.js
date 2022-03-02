@@ -1,9 +1,10 @@
 import React from 'react';
+import oops from '../img/Oops.png';
 
 function Error(){
   return(
     <section>
-      <img src='../../Oops.png' alt='Oops' style={{height:'300px'}}/>
+      <img src={oops} alt='Oops' style={{height:'300px'}}/>
     </section>
   );
 }
