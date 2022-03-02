@@ -1,13 +1,14 @@
 import React from 'react';
 import {useGetNewsQuery} from '../services/news';
 import { Typography, Card, Row, Col} from 'antd';
+import Error from './ErrorComponent'
 import Loading from './LoadingComponent';
 
 const { Title} = Typography;
 const { Meta } = Card;
 
 function News(){
-  const {data, isLoading} = useGetNewsQuery()
+  const {data, isLoading, isError, error} = useGetNewsQuery()
   console.log(data);
   const news = data?.articles.map((news) => {
     if(news.description==null) return;
@@ -30,6 +31,14 @@ function News(){
     <div className='container'>
       <Title>News</Title>
       { isLoading ? <Loading /> : <Row justify="space-around">{news}</Row>}
+      { isError ? (      <Row justify='center'>
+        <Col span={8} style={{display: "flex", alignItems: "center"}}>
+          <Title>{error?.data.message}</Title>
+        </Col>
+        <Col span={8}>
+          <Error />
+        </Col>
+      </Row>) : <></>}
     </div>
   );
 }

@@ -46,7 +46,7 @@ function SingleStock(){
     content = (
       <Row justify='center'>
         <Col span={8} style={{display: "flex", alignItems: "center"}}>
-          <Title>{error?.data.message}</Title>
+          <Title>{error.data.message}</Title>
         </Col>
         <Col span={8}>
           <Error />

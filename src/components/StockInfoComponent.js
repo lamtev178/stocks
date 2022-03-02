@@ -19,7 +19,7 @@ ChartJS.register(
 
 
 function StockInfo({stock, symbol}){ 
-  const { data : chartStock, isSuccess : chartSuccess,} = useGetChartQuery(symbol)
+  const { data : chartStock, isSuccess : chartSuccess} = useGetChartQuery(symbol)
   const chartDates = chartStock?.[symbol].timestamp.map((date) => {
     return(new Date(date * 1000).toLocaleDateString())
   })
