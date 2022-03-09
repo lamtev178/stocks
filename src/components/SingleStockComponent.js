@@ -15,8 +15,8 @@ const { Meta } = Card;
 function SingleStock(){
   const { symbol } = useParams()
   const { data : stock, isLoading, isSuccess, isError, error } = useGetStockQuery(symbol)
-  const { data : comments, isSuccess : commentsSuccess,} = useGetCommentsQuery(symbol)
-  const { data : StockNews, isLoading :  newsIsLoading,  isSuccess : newsSuccess, isError : newsIsError, error : newsError} = useGetSymbolNewsQuery(symbol)
+  const { data : comments, isError : commentsIsError, error:commentsError} = useGetCommentsQuery(symbol)
+  const { data : StockNews, isError : newsIsError, error : newsError} = useGetSymbolNewsQuery(symbol)
 
 
   const stocksComments = comments?.finance.result.reports.map(comment => {
@@ -37,7 +37,7 @@ function SingleStock(){
       <section>
         <Typography >
           <Title level={3}>Comments : </Title>
-          {stocksComments}
+          {commentsIsError ? <><Error /><h2>{commentsError}</h2></> : {stocksComments}}
         </Typography>
       </section>
     );
@@ -56,10 +56,10 @@ function SingleStock(){
   const newsContent = StockNews?.articles?.map((news) => {
     return(
           <Col span={{md:6,sm:12,xs:24}} style={{margin:"0 10px 10px 10px"}} key={news.url}>
-            <a href={news.url} target="_blank">
+            <a href={news.url} target="_blank" rel="noopener noreferrer">
               <Card 
                 hoverable 
-                cover={<img src={news.urlToImage} style={{borderRadius:'30px'}}/>}  
+                cover={<img src={news.urlToImage} style={{borderRadius:'30px'}} alt={news.title}/>}  
                 bordered 
                 style={{width:"280px", background:'#f0f2f5', borderRadius:'30px'}}
               >
