@@ -2,6 +2,7 @@ import React from 'react';
 import { Divider, Row, Col} from 'antd';
 import { Line } from 'react-chartjs-2';
 import {useGetChartQuery} from '../services/stocks';
+import {useParams} from 'react-router-dom';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -18,7 +19,9 @@ ChartJS.register(
 );
 
 
-function StockInfo({stock, symbol}){ 
+function StockInfo(props){ 
+  const { symbol } = useParams()
+  const {stock} = props
   const { data : chartStock, isSuccess : chartSuccess} = useGetChartQuery(symbol)
   const chartDates = chartStock?.[symbol].timestamp.map((date) => {
     return(new Date(date * 1000).toLocaleDateString())

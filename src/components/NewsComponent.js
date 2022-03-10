@@ -9,7 +9,6 @@ const { Meta } = Card;
 
 function News(){
   const {data, isLoading, isError, error} = useGetNewsQuery()
-  console.log(data);
   const news = data?.articles.map((news) => {
     if(news.description==null) return;
       return(

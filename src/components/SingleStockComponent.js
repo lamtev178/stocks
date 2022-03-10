@@ -16,10 +16,9 @@ function SingleStock(){
   const { symbol } = useParams()
   const { data : stock, isLoading, isSuccess, isError, error } = useGetStockQuery(symbol)
   const { data : comments, isError : commentsIsError, error:commentsError} = useGetCommentsQuery(symbol)
-  const { data : StockNews, isError : newsIsError, error : newsError} = useGetSymbolNewsQuery(symbol)
+  const { data : stockNews, isError : newsIsError, error : newsError} = useGetSymbolNewsQuery(symbol)
 
-
-  const stocksComments = comments?.finance.result.reports.map(comment => {
+  const stocksComments = comments?.finance?.result?.reports.map((comment) => {
     return(
       <section key={comment.id}>
         <Title  level={4} style={{textAlign:'left'}}>{comment.title}</Title>
@@ -37,7 +36,7 @@ function SingleStock(){
       <section>
         <Typography >
           <Title level={3}>Comments : </Title>
-          {commentsIsError ? <><Error /><h2>{commentsError}</h2></> : {stocksComments}}
+          {commentsIsError ? <><Error /><h2>{commentsError}</h2></> : <Row>{stocksComments}</Row>}
         </Typography>
       </section>
     );
@@ -53,7 +52,7 @@ function SingleStock(){
         </Col>
       </Row>)
   }
-  const newsContent = StockNews?.articles?.map((news) => {
+  const newsContent = stockNews?.articles?.map((news) => {
     return(
           <Col span={{md:6,sm:12,xs:24}} style={{margin:"0 10px 10px 10px"}} key={news.url}>
             <a href={news.url} target="_blank" rel="noopener noreferrer">
@@ -77,12 +76,12 @@ function SingleStock(){
           <Link to="/">Home</Link>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <Link to="/stocks">Stocks</Link>
+          <Link to="/stockList">Stocks</Link>
         </Breadcrumb.Item>
         <Breadcrumb.Item>{symbol}</Breadcrumb.Item>
       </Breadcrumb>
       <Title>{symbol}</Title>
-      <StockInfo symbol={symbol} stock={stock}/>
+      <StockInfo stock={stock}/> 
       <Row>
         <Col span={12}>{content}</Col>
         <Col span={12}>{newsIsError ? <><Error /><h2>{newsError}</h2></> : <Row justify="space-around">{newsContent}</Row>}</Col>

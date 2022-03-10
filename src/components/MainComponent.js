@@ -15,9 +15,9 @@ function Main(){
       <Header />
       <Layout>
         <Routes>
-          <Route path="/" element={<Home />}/>
-          <Route path="stocks" element={<Stocks />}/>
-          <Route path="stocks/:symbol" element={<SingleStock />} />
+          <Route path="" element={<Home />}/>
+          <Route path="stocksList" element={<Stocks />}/>
+          <Route path="stocksList/:symbol" element={<SingleStock />} />
           <Route path="contactus" element={<ContactUs />}/>
           <Route path="news" element={<News />}/>
         </Routes>

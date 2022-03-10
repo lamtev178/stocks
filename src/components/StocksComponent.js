@@ -17,7 +17,7 @@ function Stocks(){
   const [range, setRange] = useState('regular');
   const redirect = useNavigate()
   const handleSearch = value => {
-    redirect(`/stocks/${value.toUpperCase()}`)
+    redirect(`/stocksList/${value.toUpperCase()}`)
   }
   const stock = data?.quoteResponse.result.map((stock) => {
       return (<Stock stock = {stock} range={range} key={stock.averageDailyVolume10Day}/>);

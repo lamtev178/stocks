@@ -10,7 +10,7 @@ function Footer(){
       <h3>Links</h3>
         <ul className="list">
           <li><Link to="/">Home</Link></li>
-          <li><Link to="stocks">Stocks</Link></li>
+          <li><Link to="stocksList">Stocks</Link></li>
           <li><Link to="contactus">Contact Us</Link></li>
         </ul>
       </Col>

@@ -36,7 +36,7 @@ function Stock({stock, range}){
     if(stock[rangeStock+"ChangePercent"] < 0) colorStock = 'red';
     return(
         <Col span={{md:6,sm:12,xs:24}} style={{margin:"0 10px 10px 10px"}} >
-          <Link to={`/stocks/${stock.symbol.toUpperCase()}`}>
+          <Link to={`/stocksList/${stock.symbol.toUpperCase()}`}>
               <Card 
               hoverable 
               title={stock.shortName}  

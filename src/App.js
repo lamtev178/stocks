@@ -1,6 +1,6 @@
 import './App.css';
 import Main from './components/MainComponent';
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter  } from "react-router-dom";
 import store from './redux/configureStore';
 import {Provider} from 'react-redux';
 import 'antd/dist/antd.css';
@@ -22,11 +22,11 @@ getAnalytics(app);
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter  basemname='/stocks'>
       <Provider store={store}>
         <Main />
       </Provider>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 

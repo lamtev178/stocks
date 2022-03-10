@@ -32,7 +32,7 @@ function Header(){
   return(
       <Menu mode="horizontal" style={{paddingLeft:'30px'}}>
         <Menu.Item key="logo"><Link to="/"><img src={logo} style={{height:"35px", width:"35px"}} alt='logo'/></Link></Menu.Item>
-        <Menu.Item key="stocks" icon={<LineChartOutlined />}><Link to="stocks">Stocks</Link></Menu.Item>
+        <Menu.Item key="stocks" icon={<LineChartOutlined />}><Link to="stocksList">Stocks</Link></Menu.Item>
         <Menu.Item key="contact" icon={<MailOutlined />}><Link to="contactus">Contact Us</Link></Menu.Item>
         <Menu.Item key="news"><Link to="news">News</Link></Menu.Item>
         {user? menuUser : <Menu.Item key="login" ><Button icon={<UserOutlined />} onClick={login} >Login in</Button></Menu.Item>}
