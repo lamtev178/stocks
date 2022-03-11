@@ -22,7 +22,7 @@ getAnalytics(app);
 
 function App() {
   return (
-    <BrowserRouter  basemname='/stocks'>
+    <BrowserRouter  basename='/stocks'>
       <Provider store={store}>
         <Main />
       </Provider>

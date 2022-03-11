@@ -26,12 +26,6 @@ p {
   background: url("../public/welcome.jpg");
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -66,11 +60,17 @@ p {
 .stock-info span {
   font-size: 20px;
 }
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.error-img {
+  max-height: 300px;
+  max-width: 300px;
+}
+@media (max-width: 420px) {
+  .error-img {
+    width: 200px;
+    height: 200px;
   }
-  to {
-    transform: rotate(360deg);
+  .welcome {
+    padding: 10px;
+    background: url("../public/welcome.jpg");
   }
 }

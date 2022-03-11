@@ -42,9 +42,9 @@ function StockInfo(props){
       }
   }
       return(
-      <Row>
-        <Col span={6}>
-          <div className='stock-info'>
+      <Row justify="space-around">
+        <Col span={{md:6,sm:12,xs:24}}>
+          <div>
             <span>Price</span><span>{stock?.quoteResponse?.result[0]?.regularMarketPrice.toFixed(2)}$</span>
           </div>
           <Divider />
