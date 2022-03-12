@@ -5,7 +5,7 @@ const {Sider} = Layout;
 const { Title } = Typography;
 const { Search } = Input;
 
-function MySider({onSearch, onChange, value}){
+function MySider({onSearch, onChange, value, onSort}){
   return(
     <Sider style={{background:"#bfbfbf"}} breakpoint='sm'>
       <div style={{position: "sticky", top: "0", paddingTop:'20px'}}>
@@ -14,6 +14,11 @@ function MySider({onSearch, onChange, value}){
           <Option value="regular">Regular</Option>
           <Option value="twoHundredDay">Two Hundred Day</Option>
           <Option value="fiftyDay">Fifty Day</Option>
+        </Select>
+        <Title level={4}>Sort</Title>
+        <Select value='Not Sorted' onChange={event => onSort(event)} style={{margin:"10px", width:"80%"}}>
+          <Option value="ascending">Ascending</Option>
+          <Option value="descending">Descending</Option>
         </Select>
         <Title level={4} >Search symbol</Title>
         <Search style={{margin:"10px", width:"80%"}} onSearch={onSearch} type="text" enterButton placeholder="input search"/>
